@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import QuartzCore
 
 class TrucksTableViewController: UITableViewController {
     private(set) public var truckHelper = TruckHelper()
@@ -18,6 +19,16 @@ class TrucksTableViewController: UITableViewController {
             self.trucks = trucks
             self.tableView.reloadData()
         }
+        setupView()
+    }
+    func setupView(){
+        tableView.layer.cornerRadius = 12
+        self.view.clipsToBounds = true
+        self.view.backgroundColor = UIColor.red
+
+        self.tableView.backgroundColor = UIColor.red
+        
+
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

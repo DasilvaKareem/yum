@@ -14,6 +14,8 @@ import MapKit
 class MapViewController: UIViewController{
     private(set) public var truckHelper = TruckHelper()
     private(set) public var userHelper = BaseUserHelper()
+    @IBOutlet public var containerView: UIView?
+    
     override func viewDidLoad() {
         userHelper.loginWith(email: "keaton.burleson@me.com", password: "abc123", ref: truckHelper.ref) { (loggedIn) in
             if loggedIn{
@@ -22,6 +24,7 @@ class MapViewController: UIViewController{
                 truck.saveTo(user: self.userHelper.currentUser!)
             }
         }
+        containerView?.backgroundColor = UIColor.clear
     }
     
 }

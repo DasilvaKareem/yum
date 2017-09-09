@@ -24,19 +24,63 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="19r-Z6-64V">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="334"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="stV-g6-Tj6">
+                                <rect key="frame" x="16" y="24" width="343" height="51"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="wMv-rv-7VW"/>
+                                </constraints>
+                                <state key="normal" title="Share truck location">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareTruckLocationWithSender:" destination="lzi-Ki-gmU" eventType="touchUpInside" id="q0y-M2-nqu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="stV-g6-Tj6" firstAttribute="top" secondItem="1mL-wV-u8T" secondAttribute="top" constant="24" id="7Zk-Wa-0sB"/>
                             <constraint firstItem="19r-Z6-64V" firstAttribute="top" secondItem="1mL-wV-u8T" secondAttribute="top" id="7e1-cu-Jvs"/>
+                            <constraint firstItem="stV-g6-Tj6" firstAttribute="leading" secondItem="1mL-wV-u8T" secondAttribute="leadingMargin" id="JGv-IG-pkY"/>
+                            <constraint firstItem="stV-g6-Tj6" firstAttribute="centerX" secondItem="19r-Z6-64V" secondAttribute="centerX" id="Lk3-im-UZz"/>
                             <constraint firstItem="19r-Z6-64V" firstAttribute="leading" secondItem="1mL-wV-u8T" secondAttribute="leading" id="bQE-pe-DUy"/>
                             <constraint firstAttribute="trailing" secondItem="19r-Z6-64V" secondAttribute="trailing" id="hwC-zC-Dwh"/>
                             <constraint firstItem="19r-Z6-64V" firstAttribute="bottom" secondItem="SJ0-6n-6AL" secondAttribute="top" id="pqR-R7-kSc"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="shareButton" destination="stV-g6-Tj6" id="ce8-wQ-Huc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="koJ-4W-bDc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2551" y="-476"/>
+            <point key="canvasLocation" x="2549.5999999999999" y="-476.76161919040482"/>
+        </scene>
+        <!--Detail-->
+        <scene sceneID="xrG-SO-f2L">
+            <objects>
+                <viewController id="8lD-NK-pOZ" customClass="FoodTruckDetailViewController" customModule="yum" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lmP-rK-K8D"/>
+                        <viewControllerLayoutGuide type="bottom" id="9hf-Tu-Hye"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sJG-ve-Qkb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Detail" id="G2h-9b-1BL">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="haZ-KE-6ug">
+                            <connections>
+                                <action selector="backActionWithSender:" destination="8lD-NK-pOZ" id="Hnj-54-i5M"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3nG-s4-Tfr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4348" y="-317.54122938530736"/>
         </scene>
         <!--Trucks Table View Controller-->
         <scene sceneID="YKR-g2-Wl3">
@@ -91,7 +135,7 @@
                                         <rect key="frame" x="0.0" y="68" width="375" height="256"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SampleCell" textLabel="YuK-mA-NTb" detailTextLabel="jmf-QI-qe0" rowHeight="81" style="IBUITableViewCellStyleSubtitle" id="PF0-c8-dIC">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="truckCell" textLabel="YuK-mA-NTb" detailTextLabel="jmf-QI-qe0" rowHeight="81" style="IBUITableViewCellStyleSubtitle" id="PF0-c8-dIC">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="81"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PF0-c8-dIC" id="D39-mS-nPH">
@@ -115,6 +159,9 @@
                                                     </subviews>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <connections>
+                                                    <segue destination="lUq-xa-V5z" kind="showDetail" identifier="showDetail" action="showViewController:sender:" id="5eV-Oh-Vx1"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
@@ -140,10 +187,14 @@
                             <constraint firstAttribute="bottomMargin" secondItem="STh-B5-KEM" secondAttribute="bottom" constant="-10" id="iE4-pL-5He"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="gripperView" destination="LZF-LV-aBq" id="sHy-Ez-O84"/>
+                        <outlet property="tableView" destination="7iq-qQ-T9S" id="FXo-3s-T1h"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sct-H2-83R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2550" y="-118"/>
+            <point key="canvasLocation" x="2534" y="-72"/>
         </scene>
         <!--Pulley View Controller-->
         <scene sceneID="Dof-sB-UXv">
@@ -190,6 +241,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AK1-mK-PCA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1671" y="-287"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zue-ZM-HJh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lUq-xa-V5z" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="08B-Zs-vKV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8lD-NK-pOZ" kind="relationship" relationship="rootViewController" id="SY4-Dw-qCA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zl5-8X-a0a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3408.8000000000002" y="-317.54122938530736"/>
         </scene>
     </scenes>
 </document>

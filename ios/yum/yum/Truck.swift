@@ -27,7 +27,7 @@ class Truck: NSObject {
                 let geoFire = GeoFire(firebaseRef: self.ref?.child("trucks"))
                 let key = self.ref.childByAutoId().key
                 geoFire?.setLocation(self.lastLocation?.getLocation(), forKey: key)
-                self.ref.child("trucks/\(key)/name").setValue("Yo12")
+                self.ref.child("trucks/\(key)/name").setValue(self.name)
             } else {
                 print("Cannot create truck, account not truck account")
             }

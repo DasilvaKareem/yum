@@ -10,21 +10,62 @@ import Foundation
 import UIKit
 import Firebase
 import MapKit
+import Fakery
 
 class MapViewController: UIViewController{
     private(set) public var truckHelper = TruckHelper()
     private(set) public var userHelper = BaseUserHelper()
-    @IBOutlet public var containerView: UIView?
+
+    private var locationManager: CLLocationManager?
+    
+    public var currentUserLocation: CLLocation? = nil
+    @IBOutlet public var shareButton: UIButton?
     
     override func viewDidLoad() {
+        locationManager = CLLocationManager()
+        locationManager?.delegate = self
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        configureView()
         userHelper.loginWith(email: "keaton.burleson@me.com", password: "abc123", ref: truckHelper.ref) { (loggedIn) in
             if loggedIn{
-                let truckLocation = TruckLocation(latitude: 37.7853889, longitude: -122.4056973)
-                let truck = Truck(name: "Yo", lastLocation: truckLocation, reference: self.truckHelper.ref)
-                truck.saveTo(user: self.userHelper.currentUser!)
+                self.userHelper.currentUser?.fetchUserType(completion: { (userType) in
+                    if userType == .truck{
+                        self.shareButton?.alpha = 0.0
+                        self.shareButton?.isHidden = false
+                        UIView.animate(withDuration: 0.3, animations: { 
+                            self.shareButton?.alpha = 1.0
+                        })
+                    }
+                })
             }
         }
-        containerView?.backgroundColor = UIColor.clear
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.startUpdatingLocation()
+    }
+    
+    func configureView(){
+        shareButton?.isHidden = true
+        shareButton?.layer.cornerRadius = 12
+    }
+    
+    @IBAction func shareTruckLocation(sender: UIButton){
+        if userHelper.loggedIn == true && self.currentUserLocation != nil{
+            let locale = NSLocale.current.identifier
+            let faker = Faker(locale: locale)
+            let companyName = faker.company.name() + " " + faker.team.creature()
+            let truckLocation = TruckLocation(latitude: (self.currentUserLocation?.coordinate.latitude)!, longitude: (self.currentUserLocation?.coordinate.longitude)!)
+            let truck = Truck(name: companyName, lastLocation: truckLocation, reference: self.truckHelper.ref)
+            truck.saveTo(user: self.userHelper.currentUser!)
+        }
+        
+    }
+}
+extension MapViewController: CLLocationManagerDelegate{
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.currentUserLocation = locations.last
+        print("location updated")
+    }
 }

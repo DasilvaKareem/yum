@@ -9,4 +9,5 @@ target 'yum' do
   pod 'FirebaseUI/Auth'
   pod 'Firebase/Database'
   pod 'Pulley'
+  pod 'Fakery'
 end

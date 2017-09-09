@@ -11,11 +11,15 @@ import Firebase
 
 class BaseUserHelper: NSObject {
     private(set) public var currentUser: BaseUser? = nil
+    private(set) public var loggedIn: Bool = false
+    public var currentUserType: BaseUserType? = nil
+    
     func loginWith(email: String, password: String, ref: DatabaseReference, completion: @escaping (_ result: Bool) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if user != nil {
                 let newUser = BaseUser(user: user!, ref: ref)
                 self.setCurrentUser(user: newUser)
+                self.loggedIn = true
                 completion(true)
             } else {
                 print(error!)

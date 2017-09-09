@@ -10,36 +10,37 @@ import Foundation
 import UIKit
 import QuartzCore
 
-class TrucksTableViewController: UITableViewController {
+class TrucksTableViewController: UIViewController {
     private(set) public var truckHelper = TruckHelper()
-    private var trucks: [Truck] = []
+    public var trucks: [Truck] = []
+
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var searchBar: UISearchBar!
+    @IBOutlet var gripperView: UIView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        gripperView.layer.cornerRadius = 2.5
         truckHelper.getTrucks { (trucks) in
             self.trucks = trucks
             self.tableView.reloadData()
         }
-        setupView()
     }
-    func setupView(){
-        tableView.layer.cornerRadius = 12
-        self.view.clipsToBounds = true
-        self.view.backgroundColor = UIColor.red
 
-        self.tableView.backgroundColor = UIColor.red
-        
 
-    }
-    override func numberOfSections(in tableView: UITableView) -> Int {
+}
+extension TrucksTableViewController: UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.trucks.count
     }
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "truckCell")
         cell?.textLabel?.text = trucks[indexPath.row].name
         return cell!
     }
-    
 }

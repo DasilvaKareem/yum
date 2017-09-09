@@ -7,27 +7,44 @@
 //
 
 import Foundation
+import Firebase
 
-class Truck: NSObject{
+class Truck: NSObject {
     private(set) public var lastLocation: TruckLocation?
-    private(set) public var name: String?
-    init(name: String, lastLocation: TruckLocation){
+    private(set) public var name: String!
+    private var ref: DatabaseReference!
+
+    init(name: String, lastLocation: TruckLocation, reference: DatabaseReference) {
         super.init()
         self.name = name
         self.lastLocation = lastLocation
+        self.ref = reference
+    }
+
+    public func saveTo(user: BaseUser) {
+        user.fetchUserType { (userType) in
+            if (userType == .truck) {
+                let geoFire = GeoFire(firebaseRef: self.ref?.child("trucks"))
+                let key = self.ref.childByAutoId().key
+                geoFire?.setLocation(self.lastLocation?.getLocation(), forKey: key)
+                self.ref.child("trucks/\(key)/name").setValue("Yo12")
+            } else {
+                print("Cannot create truck, account not truck account")
+            }
+        }
     }
 }
 
-class TruckLocation: NSObject{
-    public var address: String!
-    public var zipCode: String?
-    public var state: String?
-    public var country: String!
-    init(address: String, zipCode: String, state: String, country: String){
+class TruckLocation: NSObject {
+    public var latitude: Double!
+    public var longitude: Double!
+    init(latitude: Double, longitude: Double) {
         super.init()
-        self.address = address
-        self.zipCode = zipCode
-        self.state = state
-        self.country = country
+        self.latitude = latitude
+        self.longitude = longitude
+    }
+
+    public func getLocation() -> CLLocation {
+        return CLLocation(latitude: self.latitude, longitude: self.longitude)
     }
 }

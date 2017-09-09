@@ -1,26 +1,93 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="lzi-Ki-gmU">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Map View Controller-->
+        <scene sceneID="Coe-Ou-mfS">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="lzi-Ki-gmU" customClass="MapViewController" customModule="yum" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="ZU7-CP-jTZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="SJ0-6n-6AL"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="1mL-wV-u8T">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="19r-Z6-64V">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="559" id="N64-R8-SZV"/>
+                                </constraints>
+                            </mapView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lN4-3A-6U9">
+                                <rect key="frame" x="0.0" y="559" width="375" height="108"/>
+                                <connections>
+                                    <segue destination="PMl-o3-hd7" kind="embed" id="GWx-Gt-jz1"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lN4-3A-6U9" firstAttribute="bottom" secondItem="SJ0-6n-6AL" secondAttribute="top" id="8bN-Y2-5p7"/>
+                            <constraint firstItem="19r-Z6-64V" firstAttribute="leading" secondItem="lN4-3A-6U9" secondAttribute="leading" id="KTn-PU-aBp"/>
+                            <constraint firstItem="19r-Z6-64V" firstAttribute="trailing" secondItem="lN4-3A-6U9" secondAttribute="trailing" id="ZqX-Ta-KdD"/>
+                            <constraint firstAttribute="trailing" secondItem="19r-Z6-64V" secondAttribute="trailing" id="i6z-wj-M1U"/>
+                            <constraint firstItem="19r-Z6-64V" firstAttribute="leading" secondItem="1mL-wV-u8T" secondAttribute="leading" id="p3L-6c-m3I"/>
+                            <constraint firstItem="19r-Z6-64V" firstAttribute="top" secondItem="1mL-wV-u8T" secondAttribute="top" id="rXV-WU-n48"/>
+                            <constraint firstItem="lN4-3A-6U9" firstAttribute="top" secondItem="19r-Z6-64V" secondAttribute="bottom" id="vQ4-df-slo"/>
+                        </constraints>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="koJ-4W-bDc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="398" y="-269"/>
+        </scene>
+        <!--Trucks Table View Controller-->
+        <scene sceneID="FtE-q2-mmT">
+            <objects>
+                <tableViewController id="PMl-o3-hd7" customClass="TrucksTableViewController" customModule="yum" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9jI-ai-d0N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="truckCell" textLabel="1aO-0D-wNi" style="IBUITableViewCellStyleDefault" id="S17-Jz-R7l">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S17-Jz-R7l" id="Qfd-Vl-BDY">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1aO-0D-wNi">
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="PMl-o3-hd7" id="6rW-DX-sQe"/>
+                            <outlet property="delegate" destination="PMl-o3-hd7" id="R81-mL-AIM"/>
+                        </connections>
+                    </tableView>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MQi-Zr-RYC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1178" y="-269"/>
         </scene>
     </scenes>
 </document>

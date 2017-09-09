@@ -6,9 +6,10 @@
 //  Copyright © 2017 poeen. All rights reserved.
 //
 
-#import "GeoFire.h"
+
 #ifndef Bridging_Header_h
 #define Bridging_Header_h
 
+#import "GeoFire.h"
 
 #endif /* Bridging_Header_h */

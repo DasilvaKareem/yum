@@ -23,12 +23,15 @@ class TrucksTableViewController: UIViewController {
         self.tableView.dataSource = self
         self.tableView.delegate = self
         gripperView.layer.cornerRadius = 2.5
-        truckHelper.getTrucks { (trucks) in
-            self.trucks = trucks
-            self.tableView.reloadData()
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(self.loadData(_:)), name: NSNotification.Name(rawValue: "loadTrucks"), object: nil)
+        
     }
 
+    func loadData(_ notification: NSNotification){
+        let trucks = notification.userInfo?["trucks"] as! [Truck]
+        self.trucks = trucks
+        self.tableView.reloadData()
+    }
 
 }
 extension TrucksTableViewController: UITableViewDataSource, UITableViewDelegate {

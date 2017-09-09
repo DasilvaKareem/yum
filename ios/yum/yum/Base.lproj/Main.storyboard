@@ -50,6 +50,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="mapView" destination="19r-Z6-64V" id="Z3u-D3-vHq"/>
                         <outlet property="shareButton" destination="stV-g6-Tj6" id="ce8-wQ-Huc"/>
                     </connections>
                 </viewController>

@@ -24,10 +24,10 @@ class Truck: NSObject {
     public func saveTo(user: BaseUser) {
         user.fetchUserType { (userType) in
             if (userType == .truck) {
-                let geoFire = GeoFire(firebaseRef: self.ref?.child("trucks"))
+                let geoFire = GeoFire(firebaseRef: self.ref)
                 let key = self.ref.childByAutoId().key
                 geoFire?.setLocation(self.lastLocation?.getLocation(), forKey: key)
-                self.ref.child("trucks/\(key)/name").setValue(self.name)
+                self.ref.child("\(key)/name").setValue(self.name)
             } else {
                 print("Cannot create truck, account not truck account")
             }
@@ -44,7 +44,8 @@ class TruckLocation: NSObject {
         self.longitude = longitude
     }
     init(location: [Double]){
-        
+        self.latitude = location[0]
+        self.longitude = location[1]
     }
     public func getLocation() -> CLLocation {
         return CLLocation(latitude: self.latitude, longitude: self.longitude)

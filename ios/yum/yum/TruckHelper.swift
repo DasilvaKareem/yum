@@ -22,23 +22,25 @@ class TruckHelper: NSObject {
 
     }
 
-    func getTrucks(completion: @escaping (_ trucks: [Truck]) -> Void) {
+    func getTrucks(currentLocation: CLLocation, completion: @escaping (_ trucks: [Truck]) -> Void) {
         var trucks: [Truck] = []
-        ref.child("trucks").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
-                for snap in snapshots
-                {
-                    let truckName = snap.childSnapshot(forPath: "name").value! as! String
-                    let truckCoordinateArray = snap.childSnapshot(forPath: "l").value! as! [Double]
-                    let truckLocation = TruckLocation(location: truckCoordinateArray)
-                    let newTruck = Truck(name: truckName, lastLocation: truckLocation, reference: self.ref)
-                    print(truckName)
-                    trucks.append(newTruck)
-                }
-                completion(trucks)
-            }
+        let geoFire = GeoFire(firebaseRef: ref)
+        let query = geoFire?.query(at: currentLocation, withRadius: 0.6)
+
+        query?.observe(.keyEntered, with: { (key: String?, location: CLLocation?) in
+            print("key entered")
+            self.ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                let snapshot = snapshot.childSnapshot(forPath: key!)
+                let truckName = snapshot.childSnapshot(forPath: "name").value! as! String
+                let truckCoordinateArray = snapshot.childSnapshot(forPath: "l").value! as! [Double]
+                let truckLocation = TruckLocation(location: truckCoordinateArray)
+                let newTruck = Truck(name: truckName, lastLocation: truckLocation, reference: self.ref)
+                print(truckName)
+                trucks.append(newTruck)
+                
+                 completion(trucks)
+            })
         })
 
-        completion(trucks)
     }
 }

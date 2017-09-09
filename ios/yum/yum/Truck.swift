@@ -43,7 +43,9 @@ class TruckLocation: NSObject {
         self.latitude = latitude
         self.longitude = longitude
     }
-
+    init(location: [Double]){
+        
+    }
     public func getLocation() -> CLLocation {
         return CLLocation(latitude: self.latitude, longitude: self.longitude)
     }

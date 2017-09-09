@@ -18,6 +18,9 @@
 		8ACAA15D1F63935E00394B0B /* GFGeoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ACAA1561F63935E00394B0B /* GFGeoHash.m */; };
 		8ACAA15E1F63935E00394B0B /* GFGeoHashQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ACAA1581F63935E00394B0B /* GFGeoHashQuery.m */; };
 		8ACAA15F1F63935E00394B0B /* GFQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ACAA15A1F63935E00394B0B /* GFQuery.m */; };
+		8ACAA1641F6395DE00394B0B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8ACAA1631F6395DE00394B0B /* GoogleService-Info.plist */; };
+		8ACAA1671F63974100394B0B /* Truck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACAA1661F63974100394B0B /* Truck.swift */; };
+		8ACAA1691F6397F000394B0B /* TruckHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACAA1681F6397F000394B0B /* TruckHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +48,9 @@
 		8ACAA1591F63935E00394B0B /* GFQuery+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GFQuery+Private.h"; sourceTree = "<group>"; };
 		8ACAA15A1F63935E00394B0B /* GFQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFQuery.m; sourceTree = "<group>"; };
 		8ACAA1621F6393E400394B0B /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		8ACAA1631F6395DE00394B0B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8ACAA1661F63974100394B0B /* Truck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Truck.swift; sourceTree = "<group>"; };
+		8ACAA1681F6397F000394B0B /* TruckHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TruckHelper.swift; sourceTree = "<group>"; };
 		90F0A18912E4348BC4F9BB20 /* Pods_yum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAEF705E95ED11EF24A8104A /* Pods-yum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yum.release.xcconfig"; path = "Pods/Target Support Files/Pods-yum/Pods-yum.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +88,8 @@
 		6182BECC1F6392420058EFA4 /* yum */ = {
 			isa = PBXGroup;
 			children = (
+				8ACAA16A1F6397F500394B0B /* Helpers */,
+				8ACAA1651F63973700394B0B /* Models */,
 				8ACAA1461F63933B00394B0B /* External Libraries */,
 				6182BECD1F6392420058EFA4 /* AppDelegate.swift */,
 				6182BECF1F6392420058EFA4 /* ViewController.swift */,
@@ -89,6 +97,7 @@
 				6182BED41F6392420058EFA4 /* Assets.xcassets */,
 				6182BED61F6392420058EFA4 /* LaunchScreen.storyboard */,
 				6182BED91F6392420058EFA4 /* Info.plist */,
+				8ACAA1631F6395DE00394B0B /* GoogleService-Info.plist */,
 				8ACAA1621F6393E400394B0B /* Bridging-Header.h */,
 			);
 			path = yum;
@@ -147,6 +156,22 @@
 				8ACAA15A1F63935E00394B0B /* GFQuery.m */,
 			);
 			path = Implementation;
+			sourceTree = "<group>";
+		};
+		8ACAA1651F63973700394B0B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8ACAA1661F63974100394B0B /* Truck.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		8ACAA16A1F6397F500394B0B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8ACAA1681F6397F000394B0B /* TruckHelper.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		C61955F3C6B73E2F3FF59C68 /* Frameworks */ = {
@@ -221,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6182BED81F6392420058EFA4 /* LaunchScreen.storyboard in Resources */,
+				8ACAA1641F6395DE00394B0B /* GoogleService-Info.plist in Resources */,
 				6182BED51F6392420058EFA4 /* Assets.xcassets in Resources */,
 				6182BED31F6392420058EFA4 /* Main.storyboard in Resources */,
 			);
@@ -332,10 +358,12 @@
 				8ACAA15C1F63935E00394B0B /* GFBase32Utils.m in Sources */,
 				6182BED01F6392420058EFA4 /* ViewController.swift in Sources */,
 				8ACAA15D1F63935E00394B0B /* GFGeoHash.m in Sources */,
+				8ACAA1691F6397F000394B0B /* TruckHelper.swift in Sources */,
 				6182BECE1F6392420058EFA4 /* AppDelegate.swift in Sources */,
 				8ACAA15B1F63935E00394B0B /* GeoFire.m in Sources */,
 				8ACAA15E1F63935E00394B0B /* GFGeoHashQuery.m in Sources */,
 				8ACAA15F1F63935E00394B0B /* GFQuery.m in Sources */,
+				8ACAA1671F63974100394B0B /* Truck.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

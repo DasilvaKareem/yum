@@ -9,8 +9,13 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    var truckData: [String: AnyObject] = [:]
+    var truckHelper = TruckHelper()
+    
     override func viewDidLoad() {
+        let _ = self.truckHelper.getTrucks()
+    
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }

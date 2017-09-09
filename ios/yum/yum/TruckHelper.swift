@@ -9,16 +9,26 @@
 import Foundation
 import Firebase
 
-class TruckHelper: NSObject{
+class TruckHelper: NSObject {
     private(set) public var query: DatabaseQuery?
     private(set) public var ref: DatabaseReference!
-    
+
     override init() {
+        FirebaseApp.configure()
         ref = Database.database().reference()
-        query = self.ref.child("Trucks").queryOrdered(byChild: "name")
+        query = self.ref.child("trucks").queryOrdered(byChild: "name")
     }
-    func getTrucks() -> [Int: Truck]{
-        let testQuery = query!
+    func getTrucks() -> [Int: Truck] {
+        guard let query = self.query
+            else {
+                return [:]
+        }
+        query.observe(.value, with: { (snapshot) in
+            for truck in snapshot.children {
+                let newTruck = Truck(name: truck["name"], lastLocation: <#TruckLocation#>)
+                
+            }
+        })
         return [:]
     }
 }

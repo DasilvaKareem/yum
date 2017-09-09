@@ -25,6 +25,9 @@
 		8ACAA1701F644FCB00394B0B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACAA16F1F644FCB00394B0B /* MapViewController.swift */; };
 		8ACAA1721F6450CC00394B0B /* TrucksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACAA1711F6450CC00394B0B /* TrucksTableViewController.swift */; };
 		8ACAA1741F646F6100394B0B /* FoodTruckDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACAA1731F646F6100394B0B /* FoodTruckDetailViewController.swift */; };
+		8ACAA17A1F64981F00394B0B /* TruckAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACAA1791F64981F00394B0B /* TruckAnnotationView.swift */; };
+		8ACAA17C1F64986200394B0B /* yum-icon-v3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ACAA17B1F64986200394B0B /* yum-icon-v3.png */; };
+		8ACAA1801F649B6000394B0B /* yum-annotate.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ACAA17F1F649B6000394B0B /* yum-annotate.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +62,9 @@
 		8ACAA16F1F644FCB00394B0B /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		8ACAA1711F6450CC00394B0B /* TrucksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrucksTableViewController.swift; sourceTree = "<group>"; };
 		8ACAA1731F646F6100394B0B /* FoodTruckDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTruckDetailViewController.swift; sourceTree = "<group>"; };
+		8ACAA1791F64981F00394B0B /* TruckAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TruckAnnotationView.swift; sourceTree = "<group>"; };
+		8ACAA17B1F64986200394B0B /* yum-icon-v3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yum-icon-v3.png"; sourceTree = "<group>"; };
+		8ACAA17F1F649B6000394B0B /* yum-annotate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yum-annotate.png"; sourceTree = "<group>"; };
 		90F0A18912E4348BC4F9BB20 /* Pods_yum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAEF705E95ED11EF24A8104A /* Pods-yum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yum.release.xcconfig"; path = "Pods/Target Support Files/Pods-yum/Pods-yum.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,6 +102,8 @@
 		6182BECC1F6392420058EFA4 /* yum */ = {
 			isa = PBXGroup;
 			children = (
+				8ACAA17F1F649B6000394B0B /* yum-annotate.png */,
+				8ACAA17B1F64986200394B0B /* yum-icon-v3.png */,
 				8ACAA16A1F6397F500394B0B /* Helpers */,
 				8ACAA1651F63973700394B0B /* Models */,
 				8ACAA1461F63933B00394B0B /* External Libraries */,
@@ -109,6 +117,7 @@
 				6182BED91F6392420058EFA4 /* Info.plist */,
 				8ACAA1631F6395DE00394B0B /* GoogleService-Info.plist */,
 				8ACAA1621F6393E400394B0B /* Bridging-Header.h */,
+				8ACAA1791F64981F00394B0B /* TruckAnnotationView.swift */,
 			);
 			path = yum;
 			sourceTree = "<group>";
@@ -263,7 +272,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6182BED81F6392420058EFA4 /* LaunchScreen.storyboard in Resources */,
+				8ACAA1801F649B6000394B0B /* yum-annotate.png in Resources */,
 				8ACAA1641F6395DE00394B0B /* GoogleService-Info.plist in Resources */,
+				8ACAA17C1F64986200394B0B /* yum-icon-v3.png in Resources */,
 				6182BED51F6392420058EFA4 /* Assets.xcassets in Resources */,
 				6182BED31F6392420058EFA4 /* Main.storyboard in Resources */,
 			);
@@ -377,6 +388,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8ACAA15C1F63935E00394B0B /* GFBase32Utils.m in Sources */,
+				8ACAA17A1F64981F00394B0B /* TruckAnnotationView.swift in Sources */,
 				8ACAA1721F6450CC00394B0B /* TrucksTableViewController.swift in Sources */,
 				8ACAA1741F646F6100394B0B /* FoodTruckDetailViewController.swift in Sources */,
 				8ACAA15D1F63935E00394B0B /* GFGeoHash.m in Sources */,

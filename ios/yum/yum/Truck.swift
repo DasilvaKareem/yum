@@ -12,8 +12,16 @@ import Firebase
 class Truck: NSObject {
     private(set) public var lastLocation: TruckLocation?
     private(set) public var name: String!
+    private(set) public var key: String!
     private var ref: DatabaseReference!
 
+    init(name: String, lastLocation: TruckLocation, reference: DatabaseReference, key: String) {
+        super.init()
+        self.name = name
+        self.key = key
+        self.lastLocation = lastLocation
+        self.ref = reference
+    }
     init(name: String, lastLocation: TruckLocation, reference: DatabaseReference) {
         super.init()
         self.name = name

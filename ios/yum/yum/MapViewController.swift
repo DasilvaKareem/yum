@@ -13,7 +13,7 @@ import MapKit
 import Fakery
 
 class MapViewController: UIViewController {
-    private(set) public var truckHelper = TruckHelper()
+    public var truckHelper: TruckHelper? = nil
     private(set) public var userHelper = BaseUserHelper()
 
     private var locationManager: CLLocationManager?
@@ -31,8 +31,10 @@ class MapViewController: UIViewController {
         mapView?.delegate = self
         mapView?.showsUserLocation = true
 
+        NotificationCenter.default.addObserver(self, selector: #selector(self.loadData(_:)), name: NSNotification.Name(rawValue: "loadTrucks"), object: nil)
+
         configureView()
-        userHelper.loginWith(email: "keaton.burleson@me.com", password: "abc123", ref: truckHelper.ref) { (loggedIn) in
+        userHelper.loginWith(email: "keaton.burleson@me.com", password: "abc123", ref: Database.database().reference()) { (loggedIn) in
             if loggedIn {
                 self.userHelper.currentUser?.fetchUserType(completion: { (userType) in
                     if userType == .truck {
@@ -45,23 +47,6 @@ class MapViewController: UIViewController {
                 })
             }
         }
-        
-        let tapGesture = UILongPressGestureRecognizer(target: self, action: #selector(manuallyGetTrucks))
-        tapGesture.minimumPressDuration = 0.5
-        self.mapView?.addGestureRecognizer(tapGesture)
-    }
-    
-    func manuallyGetTrucks(){
-        if self.currentUserLocation != nil{
-            truckHelper.getTrucks(currentLocation:  self.currentUserLocation!) { (trucks) in
-                let trucksDict: [String: [Truck]] = ["trucks": trucks]
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadTrucks"), object: nil, userInfo: trucksDict)
-                for truck in trucks {
-                    self.addTruckToMap(truck: truck)
-                }
-            }
-        }
-
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -69,9 +54,23 @@ class MapViewController: UIViewController {
         locationManager?.startUpdatingLocation()
     }
 
+
+    func loadData(_ notification: NSNotification) {
+        let trucks = notification.userInfo?["trucks"] as! [Truck]
+
+        let allAnnotations = self.mapView?.annotations
+        self.mapView?.removeAnnotations(allAnnotations!)
+
+        for truck in trucks {
+            addTruckToMap(truck: truck)
+        }
+
+    }
+
     func addTruckToMap(truck: Truck) {
-        let annotation = MKPointAnnotation()
+        let annotation = TruckAnnotationView()
         annotation.title = truck.name
+        annotation.imageName = "yum-annotate.png"
         annotation.coordinate = CLLocationCoordinate2D(latitude: (truck.lastLocation?.latitude)!, longitude: (truck.lastLocation?.longitude)!)
         self.mapView?.addAnnotation(annotation)
     }
@@ -86,7 +85,7 @@ class MapViewController: UIViewController {
             let faker = Faker(locale: locale)
             let companyName = faker.company.name() + " " + faker.team.creature()
             let truckLocation = TruckLocation(latitude: (self.currentUserLocation?.coordinate.latitude)!, longitude: (self.currentUserLocation?.coordinate.longitude)!)
-            let truck = Truck(name: companyName, lastLocation: truckLocation, reference: self.truckHelper.ref)
+            let truck = Truck(name: companyName, lastLocation: truckLocation, reference: (self.truckHelper?.ref)!)
             truck.saveTo(user: self.userHelper.currentUser!)
         }
 
@@ -94,25 +93,43 @@ class MapViewController: UIViewController {
 }
 extension MapViewController: MKMapViewDelegate {
 
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if !(annotation is TruckAnnotationView) {
+            return nil
+        }
+
+        let reuseId = "truckAnnotation"
+
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            annotationView?.canShowCallout = true
+        }
+            else {
+                annotationView?.annotation = annotation
+        }
+
+
+        let truckAnnotation = annotation as! TruckAnnotationView
+        annotationView?.image = UIImage(named: truckAnnotation.imageName)
+
+
+        return annotationView
+    }
+
 }
 extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if self.currentUserLocation == nil{
-            truckHelper.getTrucks(currentLocation:  locations.last!) { (trucks) in
-                let trucksDict: [String: [Truck]] = ["trucks": trucks]
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadTrucks"), object: nil, userInfo: trucksDict)
-                for truck in trucks {
-                    self.addTruckToMap(truck: truck)
-                }
-            }
+        if self.currentUserLocation == nil {
+            self.currentUserLocation = locations.last
+            truckHelper = TruckHelper(currentLocation: locations.last!)
+            let span = MKCoordinateSpanMake(0.002, 0.002)
+            let region = MKCoordinateRegion(center: (currentUserLocation?.coordinate)!, span: span)
+            self.mapView?.setRegion(region, animated: true)
+
         }
         self.currentUserLocation = locations.last
-        let span = MKCoordinateSpanMake(0.04, 0.04)
-        let region = MKCoordinateRegion(center: (currentUserLocation?.coordinate)!, span: span)
-        self.mapView?.setRegion(region, animated: true)
-
-        
-
 
     }
+
 }

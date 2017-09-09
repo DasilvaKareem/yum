@@ -11,7 +11,6 @@ import UIKit
 import QuartzCore
 
 class TrucksTableViewController: UIViewController {
-    private(set) public var truckHelper = TruckHelper()
     public var trucks: [Truck] = []
 
     @IBOutlet weak var tableView: UITableView!

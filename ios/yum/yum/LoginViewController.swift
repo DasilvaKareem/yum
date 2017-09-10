@@ -14,9 +14,10 @@ import FirebaseDatabase
 class LoginViewController: UIViewController {
     var ref: DatabaseReference!
     //Textfields
-    @IBOutlet var emailTextField: TextFields!
-    @IBOutlet var passwordTextfield: TextFields!
-    
+  
+
+    @IBOutlet var emailTextField: UITextField!
+    @IBOutlet var passwordTextfield: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
@@ -30,7 +31,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func logic(_ sender: Any) {
         if let email = emailTextField.text, let password = passwordTextfield.text {
-            Auth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
+            Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
                 
                 if error != nil {
                     print("there is an error with logging in")

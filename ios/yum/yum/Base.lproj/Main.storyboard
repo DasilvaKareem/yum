@@ -290,29 +290,23 @@
                                             <action selector="logic:" destination="yNN-pS-ovE" eventType="touchUpInside" id="BG8-Lh-5OL"/>
                                         </connections>
                                     </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AJQ-oh-mWh">
+                                        <rect key="frame" x="68" y="230" width="257" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Ep-W2-oQd">
+                                        <rect key="frame" x="68" y="295" width="257" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CGG-ja-qm4" customClass="TextFields" customModule="yum" customModuleProvider="target">
-                                <rect key="frame" x="50" y="305" width="283" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                <connections>
-                                    <action selector="credentialFieldChanged:" destination="yNN-pS-ovE" eventType="editingChanged" id="ReJ-oV-9c1"/>
-                                    <outlet property="delegate" destination="yNN-pS-ovE" id="Nk0-jT-978"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username/Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yYC-TL-9gR" customClass="TextFields" customModule="yum" customModuleProvider="target">
-                                <rect key="frame" x="50" y="259" width="283" height="30"/>
-                                <color key="textColor" red="0.31585165900000001" green="0.72722559799999997" blue="0.090326003089999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
-                                <connections>
-                                    <action selector="credentialFieldChanged:" destination="yNN-pS-ovE" eventType="editingChanged" id="UYg-vO-tqC"/>
-                                    <outlet property="delegate" destination="yNN-pS-ovE" id="eZl-Yl-Mb4"/>
-                                </connections>
-                            </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GlE-8b-Fyj">
                                 <rect key="frame" x="77" y="421" width="222.5" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -343,22 +337,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="yYC-TL-9gR" firstAttribute="leading" secondItem="TDz-cV-wlv" secondAttribute="leadingMargin" constant="34" id="1kS-cU-ilA"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="yYC-TL-9gR" secondAttribute="trailing" constant="26" id="IVz-g2-xh3"/>
                             <constraint firstItem="8Pn-6S-DGq" firstAttribute="top" secondItem="TDz-cV-wlv" secondAttribute="top" id="TFV-9h-yfv"/>
-                            <constraint firstItem="CGG-ja-qm4" firstAttribute="leading" secondItem="TDz-cV-wlv" secondAttribute="leadingMargin" constant="34" id="Yx6-dh-bvX"/>
                             <constraint firstItem="8Pn-6S-DGq" firstAttribute="leading" secondItem="TDz-cV-wlv" secondAttribute="leading" id="dAh-ow-Rf0"/>
-                            <constraint firstItem="CGG-ja-qm4" firstAttribute="top" secondItem="yYC-TL-9gR" secondAttribute="bottom" constant="25" id="kDj-Zi-5Cp"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="CGG-ja-qm4" secondAttribute="trailing" constant="26" id="npj-Mc-c6G"/>
                             <constraint firstItem="0jC-5q-2qo" firstAttribute="top" secondItem="8Pn-6S-DGq" secondAttribute="bottom" id="t0k-Ke-buX"/>
                             <constraint firstAttribute="trailing" secondItem="8Pn-6S-DGq" secondAttribute="trailing" id="yja-ii-zBM"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="emailTextField" destination="yYC-TL-9gR" id="xZu-sT-vS3"/>
-                        <outlet property="passwordTextfield" destination="CGG-ja-qm4" id="Jwz-Vw-iba"/>
+                        <outlet property="emailTextField" destination="AJQ-oh-mWh" id="Gsx-5v-wG5"/>
+                        <outlet property="passwordTextfield" destination="1Ep-W2-oQd" id="hzG-PL-L8u"/>
                         <outlet property="signUpButton" destination="xhR-zh-Gb2" id="Hnv-GC-nas"/>
-                        <outlet property="usernameTextfield" destination="yYC-TL-9gR" id="GHH-Qo-4nF"/>
+                        <segue destination="a9g-Iz-VDJ" kind="show" id="M2I-TS-Mtw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i77-1o-HEZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -370,7 +359,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
             </objects>
-            <point key="canvasLocation" x="124" y="235.23238380809596"/>
+            <point key="canvasLocation" x="921" y="-287"/>
         </scene>
     </scenes>
 </document>

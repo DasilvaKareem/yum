@@ -45,7 +45,7 @@ class LoginViewController: UIViewController {
                     alertController.addAction(okAction)
                     self.present(alertController, animated: true, completion: nil)
                 } else {
-                    FIRAuth.auth()?.createUser(withEmail: email, password: password) { (user, error) in
+                    Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
                         if error == nil {
                             print("Can't sign in user")
                         } else {

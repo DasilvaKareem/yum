@@ -24,6 +24,7 @@ class MapViewController: UIViewController {
     @IBOutlet public var mapView: MKMapView?
 
     override func viewDidLoad() {
+        self.hideKeyboardWhenTappedAround()
         locationManager = CLLocationManager()
         locationManager?.delegate = self
         locationManager?.desiredAccuracy = kCLLocationAccuracyBest
@@ -70,7 +71,7 @@ class MapViewController: UIViewController {
     func addTruckToMap(truck: Truck) {
         let annotation = TruckAnnotationView()
         annotation.title = truck.name
-        annotation.imageName = "yum-annotate.png"
+        annotation.imageName = "yum-icon-v5.png"
         annotation.coordinate = CLLocationCoordinate2D(latitude: (truck.lastLocation?.latitude)!, longitude: (truck.lastLocation?.longitude)!)
         self.mapView?.addAnnotation(annotation)
     }

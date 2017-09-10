@@ -13,6 +13,7 @@
 		6182BED51F6392420058EFA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6182BED41F6392420058EFA4 /* Assets.xcassets */; };
 		6182BED81F6392420058EFA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6182BED61F6392420058EFA4 /* LaunchScreen.storyboard */; };
 		6182BEE21F64A3780058EFA4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6182BEE11F64A3780058EFA4 /* LoginViewController.swift */; };
+		6182BEE41F64CC650058EFA4 /* yum-icon-v5.png in Resources */ = {isa = PBXBuildFile; fileRef = 6182BEE31F64CC650058EFA4 /* yum-icon-v5.png */; };
 		8ACAA15B1F63935E00394B0B /* GeoFire.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ACAA1521F63935E00394B0B /* GeoFire.m */; };
 		8ACAA15C1F63935E00394B0B /* GFBase32Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ACAA1541F63935E00394B0B /* GFBase32Utils.m */; };
 		8ACAA15D1F63935E00394B0B /* GFGeoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ACAA1561F63935E00394B0B /* GFGeoHash.m */; };
@@ -40,6 +41,7 @@
 		6182BED71F6392420058EFA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6182BED91F6392420058EFA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6182BEE11F64A3780058EFA4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		6182BEE31F64CC650058EFA4 /* yum-icon-v5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yum-icon-v5.png"; sourceTree = "<group>"; };
 		8ACAA14B1F63935E00394B0B /* GeoFire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoFire.h; sourceTree = "<group>"; };
 		8ACAA14C1F63935E00394B0B /* GFCircleQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFCircleQuery.h; sourceTree = "<group>"; };
 		8ACAA14D1F63935E00394B0B /* GFQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFQuery.h; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				8ACAA17F1F649B6000394B0B /* yum-annotate.png */,
+				6182BEE31F64CC650058EFA4 /* yum-icon-v5.png */,
 				8ACAA17B1F64986200394B0B /* yum-icon-v3.png */,
 				8ACAA16A1F6397F500394B0B /* Helpers */,
 				8ACAA1651F63973700394B0B /* Models */,
@@ -278,6 +281,7 @@
 				8ACAA1801F649B6000394B0B /* yum-annotate.png in Resources */,
 				8ACAA1641F6395DE00394B0B /* GoogleService-Info.plist in Resources */,
 				8ACAA17C1F64986200394B0B /* yum-icon-v3.png in Resources */,
+				6182BEE41F64CC650058EFA4 /* yum-icon-v5.png in Resources */,
 				6182BED51F6392420058EFA4 /* Assets.xcassets in Resources */,
 				6182BED31F6392420058EFA4 /* Main.storyboard in Resources */,
 			);

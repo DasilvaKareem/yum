@@ -10,4 +10,5 @@ target 'yum' do
   pod 'Firebase/Database'
   pod 'Pulley'
   pod 'Fakery'
+   pod 'Kingfisher'
 end

@@ -12,60 +12,69 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class LoginViewController: UIViewController {
-    var ref: DatabaseReference!
-    //Textfields
-  
+    private var ref: DatabaseReference!
+    private var userHelper: BaseUserHelper? = nil
 
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextfield: UITextField!
+    @IBOutlet var loginButton: UIButton?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        // Do any additional setup after loading the view.
+        userHelper = (UIApplication.shared.delegate as! AppDelegate).userHelper
+        self.ref = Database.database().reference()
+
+        loginButton?.layer.borderColor = UIColor.white.cgColor
+        loginButton?.layer.cornerRadius = 8
+        loginButton?.layer.borderWidth = 1
+
+        emailTextField.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     @IBAction func logic(_ sender: Any) {
         if let email = emailTextField.text, let password = passwordTextfield.text {
-            Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-                
-                if error != nil {
-                    print("there is an error with logging in")
-                    let alertController = UIAlertController(title: "Sorry", message: "Either your password or email is incorrect, try again.", preferredStyle: UIAlertControllerStyle.alert)
-                    
-                    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
-                    {
-                        (result : UIAlertAction) -> Void in
-                        print("You pressed OK")
-                    }
-                    alertController.addAction(okAction)
-                    self.present(alertController, animated: true, completion: nil)
-                } else {
-                    Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-                        if error == nil {
-                            print("Can't sign in user")
-                        } else {
-                            self.performSegue(withIdentifier: "LoginHome", sender: nil)
-                        }
-                    }
-                }
-            }
+            self.signIn(email: email, password: password)
         }
     }
 
-    /*
-    // MARK: - Navigation
+    func signIn(email: String, password: String) {
+        userHelper?.loginWith(email: email, password: password, ref: self.ref) { (loggedIn) in
+            if loggedIn {
+                print("logged in successfully")
+                Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+                    if error == nil {
+                        print("Can't sign in user")
+                    } else {
+                        self.dismiss(animated: true, completion: {
+         
+                        })
+                    }
+                }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+            } else {
+                print("there is an error with logging in")
+                let alertController = UIAlertController(title: "Sorry", message: "Either your password or email is incorrect, try again.", preferredStyle: UIAlertControllerStyle.alert)
+
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
+                {
+                    (result: UIAlertAction) -> Void in
+                    print("You pressed OK")
+                }
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }
+
     }
-    */
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
 }
 extension UIViewController {
@@ -74,7 +83,7 @@ extension UIViewController {
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
-    
+
     func dismissKeyboard() {
         view.endEditing(true)
     }

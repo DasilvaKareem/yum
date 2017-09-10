@@ -37,8 +37,9 @@ class TruckHelper: NSObject {
                 let truckName = snapshot.childSnapshot(forPath: "name").value! as! String
                 let truckCoordinateArray = snapshot.childSnapshot(forPath: "l").value! as! [Double]
                 let truckLocation = TruckLocation(location: truckCoordinateArray)
-                let newTruck = Truck(name: truckName, lastLocation: truckLocation, reference: self.ref, key: key!)
 
+                let newTruck = Truck(name: truckName, lastLocation: truckLocation, reference: self.ref, key: key!)
+                newTruck.imageUrl = snapshot.childSnapshot(forPath: "image-url").value as! String
                 self.addTruck(truck: newTruck)
 
             })
@@ -49,11 +50,12 @@ class TruckHelper: NSObject {
     }
 
     func removeTruck(key: String) {
-        if let index = self.trucks?.index(where: {$0.key == key}){
+        if let index = self.trucks?.index(where: { $0.key == key }) {
             self.trucks?.remove(at: index)
         }
         updateSubscribers()
     }
+    
     func addTruck(truck: Truck) {
         self.trucks?.append(truck)
         updateSubscribers()

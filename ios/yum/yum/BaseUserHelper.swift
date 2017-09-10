@@ -15,11 +15,16 @@ class BaseUserHelper: NSObject {
     public var currentUserType: BaseUserType? = nil
 
     override init() {
+        super.init()
         if (FirebaseApp.app() == nil) {
             FirebaseApp.configure()
         }
+        if Auth.auth().currentUser != nil {
+            setCurrentUser(user: BaseUser(user: Auth.auth().currentUser!, ref: Database.database().reference()))
+        }
+        self.loggedIn = UserDefaults.standard.bool(forKey: "validLogin")
     }
-    
+
     func loginWith(email: String, password: String, ref: DatabaseReference, completion: @escaping (_ result: Bool) -> Void) {
 
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in

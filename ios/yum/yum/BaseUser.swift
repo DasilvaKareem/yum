@@ -36,7 +36,7 @@ class BaseUser: NSObject {
                     }
                 })
             } else {
-                snapshot.setValue(["food-truck": false], forKey: self.uid)
+                solidReference.child("accounts/\(self.uid!)/food-truck").setValue(true)
                 completion(.user)
             }
         })

@@ -10,9 +10,11 @@ import Foundation
 import Firebase
 
 class Truck: NSObject {
-    private(set) public var lastLocation: TruckLocation?
-    private(set) public var name: String!
-    private(set) public var key: String!
+    public var lastLocation: TruckLocation?
+    public var name: String!
+    public var key: String!
+    public var imageUrl: String!
+    
     private var ref: DatabaseReference!
 
     init(name: String, lastLocation: TruckLocation, reference: DatabaseReference, key: String) {
@@ -36,6 +38,7 @@ class Truck: NSObject {
                 let key = self.ref.childByAutoId().key
                 geoFire?.setLocation(self.lastLocation?.getLocation(), forKey: key)
                 self.ref.child("\(key)/name").setValue(self.name)
+                self.ref.child("\(key)/image-url").setValue(self.imageUrl)
             } else {
                 print("Cannot create truck, account not truck account")
             }
